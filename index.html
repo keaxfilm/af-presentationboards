@@ -197,7 +197,7 @@
 
     <script>
         // OpenAI API key (replace with your actual OpenAI API key)
-        const openAIKey = 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; 
+        const openAIKey = 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; 
 
         // Handle AI-based layout generation using OpenAI's GPT-4 model (ChatGPT)
         document.getElementById('generate-layout').addEventListener('click', function() {
@@ -215,7 +215,7 @@
                 ]
             }, {
                 headers: {
-                    'Authorization': `Bearer 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`,
+                    'Authorization': `Bearer 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`,
                     'Content-Type': 'application/json'
                 }
             })
@@ -236,5 +236,40 @@
                 size: "1024x1024" // Image size
             }, {
                 headers: {
-                    'Authorization': `Bearer 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`,
-                    'Content-Type': 'application
+                    'Authorization': `Bearer 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`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                const generatedImage = response.data.data[0].url;
+                // Add the generated image to the board
+                const imgElement = document.createElement('img');
+                imgElement.src = generatedImage;
+                document.getElementById('image-grid').appendChild(imgElement);
+            })
+            .catch(error => console.error('Error with OpenAI API:', error));
+        }
+
+        // Save layout function
+        document.getElementById('save-layout').addEventListener('click', function() {
+            const layout = document.getElementById('image-grid').innerHTML;
+            localStorage.setItem('savedLayout', layout);
+            alert('Layout saved locally!');
+        });
+
+        // Download as PDF function
+        document.getElementById('download-pdf').addEventListener('click', function() {
+            html2canvas(document.querySelector("#image-grid")).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'px',
+                    format: [canvas.width, canvas.height]
+                });
+                pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+                pdf.save('set_design.pdf');
+            });
+        });
+    </script>
+</body>
+</html>
