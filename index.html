@@ -197,7 +197,7 @@
 
     <script>
         // OpenAI API key (replace 'your-openai-api-key-here' with your actual OpenAI key)
-        const openAIKey = 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; 
+        const openAIKey = 'your-openai-api-key-here';  // <-- PLACE YOUR API KEY HERE
 
         // Handle AI-based layout generation using OpenAI's GPT-4 model (ChatGPT)
         document.getElementById('generate-layout').addEventListener('click', function() {
@@ -215,7 +215,7 @@
                 ]
             }, {
                 headers: {
-                    'Authorization': `Bearer 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`,  // <-- PLACE YOUR API KEY HERE
+                    'Authorization': `Bearer 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`,  // <-- PLACE YOUR API KEY HERE
                     'Content-Type': 'application/json'
                 }
             })
@@ -236,7 +236,7 @@
                 size: "1024x1024" // Image size
             }, {
                 headers: {
-                    'Authorization': `Bearer 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}`,  // <-- PLACE YOUR API KEY HERE
+                    'Authorization': `Bearer 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`,  // <-- PLACE YOUR API KEY HERE
                     'Content-Type': 'application/json'
                 }
             })
@@ -251,4 +251,5 @@
         }
 
         // Save layout function
-        document.getElementById('save-layout').add
+        document.getElementById('save-layout').addEventListener('click', function() {
+            const layout = document.getElementById
