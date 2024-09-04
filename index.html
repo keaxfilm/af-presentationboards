@@ -196,7 +196,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <script>
-        // OpenAI API key (replace with your actual OpenAI API key)
+        // OpenAI API key (replace 'your-openai-api-key-here' with your actual OpenAI key)
         const openAIKey = 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; 
 
         // Handle AI-based layout generation using OpenAI's GPT-4 model (ChatGPT)
@@ -206,7 +206,7 @@
             const backgroundColor = document.getElementById('background-color').value;
             const compositionSuggestion = document.getElementById('composition-suggestion').value;
 
-            // Use ChatGPT to guide the composition process with user input
+            // Use ChatGPT to guide the layout
             axios.post('https://api.openai.com/v1/chat/completions', {
                 model: 'gpt-4',
                 messages: [
@@ -215,7 +215,7 @@
                 ]
             }, {
                 headers: {
-                    'Authorization': `Bearer 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`,
+                    'Authorization': `Bearer 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`,  // <-- PLACE YOUR API KEY HERE
                     'Content-Type': 'application/json'
                 }
             })
@@ -223,7 +223,7 @@
                 const aiSuggestion = response.data.choices[0].message.content;
                 alert('AI suggested layout: ' + aiSuggestion);
             })
-            .catch(error => console.error('Error with OpenAI API:', error));
+            .catch(error => console.error('Error with ChatGPT API:', error));
         });
 
         // Generate a new image using DALL·E
@@ -236,7 +236,7 @@
                 size: "1024x1024" // Image size
             }, {
                 headers: {
-                    'Authorization': `Bearer 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`,
+                    'Authorization': `Bearer ${openAIKey}`,  // <-- PLACE YOUR API KEY HERE
                     'Content-Type': 'application/json'
                 }
             })
@@ -247,29 +247,8 @@
                 imgElement.src = generatedImage;
                 document.getElementById('image-grid').appendChild(imgElement);
             })
-            .catch(error => console.error('Error with OpenAI API:', error));
+            .catch(error => console.error('Error with DALL·E API:', error));
         }
 
         // Save layout function
-        document.getElementById('save-layout').addEventListener('click', function() {
-            const layout = document.getElementById('image-grid').innerHTML;
-            localStorage.setItem('savedLayout', layout);
-            alert('Layout saved locally!');
-        });
-
-        // Download as PDF function
-        document.getElementById('download-pdf').addEventListener('click', function() {
-            html2canvas(document.querySelector("#image-grid")).then(canvas => {
-                const imgData = canvas.toDataURL('image/png');
-                const pdf = new jsPDF({
-                    orientation: 'landscape',
-                    unit: 'px',
-                    format: [canvas.width, canvas.height]
-                });
-                pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-                pdf.save('set_design.pdf');
-            });
-        });
-    </script>
-</body>
-</html>
+        document.getElementById('save-layout').add
