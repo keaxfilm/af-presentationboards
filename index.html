@@ -197,7 +197,7 @@
 
     <script>
         // OpenAI API key (replace 'your-openai-api-key-here' with your actual OpenAI key)
-        const openAIKey = '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';  // <-- PLACE YOUR API KEY HERE
+        const openAIKey = 'your-openai-api-key-here';  // <-- PLACE YOUR API KEY HERE
 
         // Handle AI-based layout generation using OpenAI's GPT-4 model (ChatGPT)
         document.getElementById('generate-layout').addEventListener('click', function() {
@@ -215,7 +215,7 @@
                 ]
             }, {
                 headers: {
-                    'Authorization': `Bearer $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`,  // <-- PLACE YOUR API KEY HERE
+                    'Authorization': `Bearer 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`,  // <-- PLACE YOUR API KEY HERE
                     'Content-Type': 'application/json'
                 }
             })
@@ -236,7 +236,7 @@
                 size: "1024x1024" // Image size
             }, {
                 headers: {
-                    'Authorization': `Bearer ${openAIKey}`,  // <-- PLACE YOUR API KEY HERE
+                    'Authorization': `Bearer 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`,  // <-- PLACE YOUR API KEY HERE
                     'Content-Type': 'application/json'
                 }
             })
